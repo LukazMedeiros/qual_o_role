@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { randomNumber } from "../services/generateRandomNumberService";
 import { withCategory, withoutCategory } from "../services/getPlaceService";
 
 const renderResultController = async (request: Request, response: Response) => {
@@ -11,16 +12,18 @@ const renderResultController = async (request: Request, response: Response) => {
   let result;
 
   if (!category) {
-    console.log("nao recebeu a categoria");
     result = await withoutCategory(location.toString());
   } else {
     result = await withCategory(location.toString(), category.toString());
   }
 
-  console.log(result.length);
-  result.forEach((element) => {
-    console.log(element);
-  });
+  if (!result.length) {
+    console.log("nao tem valor ai");
+    return;
+  }
+
+  console.log(randomNumber(result.length));
+  return response.json(result[randomNumber(result.length) - 1]);
 };
 
 export { renderResultController };
