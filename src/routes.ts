@@ -1,31 +1,13 @@
 import { Router } from "express";
+import { createPLaceController } from "./controllers/createPlaceController";
+import { renderIndexController } from "./controllers/renderIndexController";
+import { renderResultController } from "./controllers/renderResultController";
 
 const route = Router();
 
-route.get("/", (request, response) => {
-  const categories = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+route.get("/", renderIndexController);
+route.get("/result", renderResultController);
 
-  return response.render("index", { categories: categories });
-});
-
-route.get("/result", (request, response) => {
-  let { location, category } = request.query;
-
-  if (!location) {
-    return;
-  }
-
-  if (!category) {
-    category = "macaco";
-  }
-
-  const random = Math.random() * 10;
-
-  return response.render("result", {
-    location: location,
-    category: category,
-    random: random,
-  });
-});
+route.post("/createplaces", createPLaceController);
 
 export { route };

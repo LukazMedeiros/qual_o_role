@@ -32,7 +32,7 @@
                             <input type="text" name="category" id="category" placeholder="Categoria" list="categories">
                             <datalist id="categories">
                                 <% categories.forEach(value=>{ %>
-                                    <option value="<%=value%>" />
+                                    <option value="<%=value.category%>" />
                                 <% }) %>
                             </datalist>
                         </div>
