@@ -19,11 +19,13 @@ const renderResultController = async (request: Request, response: Response) => {
 
   if (!result.length) {
     console.log("nao tem valor ai");
+    //retornar pagina informando que nao encontrou
     return;
   }
 
+  const index = randomNumber(result.length) - 1;
   console.log(randomNumber(result.length));
-  return response.json(result[randomNumber(result.length) - 1]);
+  return response.render("result", { result: result[index] });
 };
 
 export { renderResultController };

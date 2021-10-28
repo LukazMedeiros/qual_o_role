@@ -12,4 +12,9 @@ const withCategory = async (district: string, category: string) => {
   return result;
 };
 
-export { withCategory, withoutCategory };
+const getById = async (id: string) => {
+  const result = await dbConnection("places").select("*").where({ id }).first();
+  return result;
+};
+
+export { withCategory, withoutCategory, getById };

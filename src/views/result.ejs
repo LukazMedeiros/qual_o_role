@@ -3,9 +3,16 @@
 <div id="result-page">
     pagina de resultado
 
-    <p>município: <%- location%></p>
-    <p>categoria: <%- category%> </p>
-    <p>numego gerado: <%- random%></p>
+    <p>numero gerado: <%- result.random%></p>
+    <p>município: <%- result.location%></p>
+    <p>categoria: <%- result.category%> </p>
+    <p>nome: <%- result.name%></p>
+    <p>endereço: <%- result.address%></p>
+    <p>descrição: <%- result.description%></p>
 </div>
+
+<script>
+    window.history.pushState({},"role", "/role?id=<%- result.id%>")
+</script>
 
 <%- include("components/footer")%>
